@@ -50,6 +50,7 @@ public class FrameGame extends javax.swing.JDialog {
         jLabel_skor.setText("" + skor);
         jLabel_nyawa.setText("" + nyawa);
         jLabel_level.setText("" + level);
+        jTextField_tebak.setEnabled(true);
 
         dlm.addElement("Mari mulai permainan");
         generateRandom(level);
@@ -264,8 +265,12 @@ public class FrameGame extends javax.swing.JDialog {
 
             }
             if (nyawa == 0) {
+                dlm.clear();
                 dlm.addElement("Nyawa habis, jawabannya adalah: " + randomInt);
+                dlm.addElement("Skor "+ skor+" tersimpan dalam database");
+                dlm.addElement("Tekan reset untuk bermain kembali");
                 simpanSkor();
+                jTextField_tebak.setEnabled(false);
             };
             jTextField_tebak.setText("");
         }
@@ -319,7 +324,6 @@ public class FrameGame extends javax.swing.JDialog {
 
         if (highscore.getSkor()!=0) {
             highScoreDAO.insert(highscore);
-            dispose();
         }
     }
 

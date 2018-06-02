@@ -99,4 +99,16 @@ public class HighScoreDAO {
             }
         }
     }
+
+    public void truncate() {
+        Statement st = null;
+        try {
+            st = koneksi.createStatement();
+            String kueri = "TRUNCATE TABLE highscore";
+            st.execute(kueri);
+            System.out.println("Truncate berhasil");
+        } catch (SQLException e) {
+            System.out.println("Truncate gagal: " + e.getMessage());
+        }
+    }
 }
